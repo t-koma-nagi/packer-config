@@ -1,0 +1,12 @@
+{
+    "vm_name": "centos9s-machine",
+    "iso_url": "http://ftp.riken.jp/Linux/centos-stream/9-stream/BaseOS/x86_64/iso/CentOS-Stream-9-20250324.0-x86_64-dvd1.iso",
+    "iso_checksum": "sha1:e94e3e4e551ea07b03a444153886e2c1f206c6ff",
+    "cpus": "1",
+    "memory": "1024",
+    "disk_size": "21440",
+    "http_directory": "../kickstart",
+    "ssh_username": "vagrant",
+    "ssh_password": "vagrant",
+    "output_directory": "../export_box"
+ }

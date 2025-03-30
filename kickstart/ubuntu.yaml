@@ -1,0 +1,52 @@
+#cloud-config
+autoinstall:
+  version: 1
+
+  # see https://canonical-subiquity.readthedocs-hosted.com/en/latest/reference/autoinstall-reference.html
+
+  locale: "en_US.UTF-8"
+
+  keyboard:
+    layout: jp
+    variant: ""
+    toggle: null
+  
+  source:
+    id: ubuntu-server-minimal
+
+  packages:
+    - linux-cloud-tools-generic
+
+  ssh:
+    install-server: true
+    authorized-keys: []
+    allow-pw: true
+
+  user-data:
+    timezone: Asia/Tokyo
+    hostname: ubuntu-dev
+    users:
+      - name: vagrant
+        gecos: 'Vagrant'
+        sudo: ALL=(ALL) NOPASSWD:ALL
+        # A password hash is needed. `mkpasswd --method=SHA-512` can help.
+        # mkpasswd can be found in the package 'whois'
+        # Plaintext:vagrant
+        passwd: '$6$qB7y1CfQ6c2pb8HS$f/YRv0IjC7M8dBslF77lvVKCZ3gnsc8dJmJ3eytdiXLYHvEsXZKUdCWk7dpT3zEUR6i..N5uL1v194wihjZIo0'
+        groups: adm, sudo
+        shell: /bin/bash
+        lock_passwd: False
+        # Vagrant Pubkey Import (See https://github.com/hashicorp/vagrant/tree/main/keys)
+        ssh_authorized_keys:
+          - ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA6NF8iallvQVp22WDkTkyrtvp9eWW6A8YVr+kz4TjGYe7gHzIw+niNltGEFHzD8+v1I2YJ6oXevct1YeS0o9HZyN1Q9qgCgzUFtdOKLv6IedplqoPkcmF0aYet2PkEDo3MlTBckFXPITAMzF8dJSIFo9D8HfdOV0IAdx4O7PtixWKn5y2hMNG0zQPyUecp4pzC6kivAIhyfHilFR61RGL+GPXQ2MWZWFYbAGjyiYJnAmCP3NOTd0jMZEnDkbUvxhMmBYSdETk1rRgm+R4LOzFUGaHqHDLKLX+FIPKcF96hrucXzcWyLbIbEgE98OHlnVYCzRdK8jlqm8tehUc9c9WhQ== vagrant insecure public key
+          - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN1YdxBpNlzxDqfJyw/QKow1F+wvG9hXGoqiysfJOn5Y vagrant insecure public key
+
+
+  storage:
+    layout:
+      name: direct
+
+  # proxy: http://192.168.0.1:3142 
+  
+  late-commands:
+    -  curtin in-target -- apt-get autoremove -y

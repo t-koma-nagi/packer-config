@@ -1,5 +1,5 @@
 # packer-config
-Vagrant用のboxファイル作成時に使用する、Packerの設定ファイルを置いてます。
+Vagrant用のboxファイル作成時に使用する、Packerの設定ファイルを置いてます。  
 徐々にOSを増やしていく予定です。
 
 
@@ -10,6 +10,15 @@ packer --version
 Packer v1.12.0
 ```
 
+
+## USEAGE
+```
+git clone https://github.com/t-koma-nagi/packer-config.git
+cd packer-config
+mkdir export_box
+cd template
+packer build -var-file=../var/centos9s.json centos9s.json
+```
 
 ## Ubunutuについて
 Ubuntuについては、どうやら`22.04 LTS`以降より`live-server ISO`での提供のみになってしまったようです。  

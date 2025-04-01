@@ -1,0 +1,12 @@
+{
+    "vm_name": "rhel9-machine",
+    "iso_url": "api-NeedLogin",
+    "iso_checksum": "api-NeedLogin",
+    "cpus": "1",
+    "memory": "1024",
+    "disk_size": "21440",
+    "http_directory": "../kickstart",
+    "ssh_username": "vagrant",
+    "ssh_password": "vagrant",
+    "output_directory": "../export_box"
+ }

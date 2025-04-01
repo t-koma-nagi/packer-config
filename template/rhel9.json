@@ -1,0 +1,37 @@
+{
+    "variables": {
+        },
+    "builders": [
+      {
+        "type": "hyperv-iso",
+        "vm_name": "{{user `vm_name`}}",
+        "guest_additions_mode": "disable",  
+        "disk_size": "{{user `disk_size`}}",
+        "iso_url": "{{user `iso_url`}}",
+        "iso_checksum": "{{user `iso_checksum`}}",
+        "http_directory": "{{user `http_directory`}}",
+        "communicator": "ssh",
+        "ssh_username": "{{user `ssh_username`}}",
+        "ssh_password": "{{user `ssh_password`}}",
+        "ssh_timeout": "2h",
+        "shutdown_command": "echo {{user `ssh_username`}} | sudo -S shutdown -h now",
+        "boot_command": [
+            "<tab> text inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/rhel-ks.cfg <enter>"
+        ],
+        "boot_wait": "10s",
+        "cpus": "{{user `cpus`}}",
+        "memory": "{{user `memory`}}",
+        "generation": 1,
+        "enable_secure_boot": false
+
+      }
+    ],
+    "post-processors": [
+        [
+            {
+                "type": "vagrant",
+                "output": "{{user `output_directory`}}/{{user `vm_name`}}.box"
+              }
+        ]
+    ]
+  }

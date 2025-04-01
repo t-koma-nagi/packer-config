@@ -11,7 +11,7 @@ Packer v1.12.0
 ```
 
 
-## USEAGE
+## USAGE
 ```
 git clone https://github.com/t-koma-nagi/packer-config.git
 cd packer-config
